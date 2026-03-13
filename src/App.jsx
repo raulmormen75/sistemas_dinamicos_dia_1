@@ -271,26 +271,7 @@ function ExampleCard({ example, onOpenVisual }) {
   );
 }
 
-function Pager({ previousItem, nextItem }) {
-  return (
-    <div className="pager">
-      {previousItem ? (
-        <button type="button" className="secondary-button" onClick={() => scrollToSection(previousItem.id)}>
-          Regresar
-        </button>
-      ) : (
-        <span />
-      )}
-      {nextItem ? (
-        <button type="button" className="primary-button" onClick={() => scrollToSection(nextItem.id)}>
-          Continuar
-        </button>
-      ) : null}
-    </div>
-  );
-}
-
-function LessonSection({ section, previousItem, nextItem, theme }) {
+function LessonSection({ section, theme }) {
   const [tab, setTab] = useState('explicacion');
 
   return (
@@ -334,11 +315,6 @@ function LessonSection({ section, previousItem, nextItem, theme }) {
       ) : null}
       {tab === 'ejemplo' ? <ExampleCard example={section.example} onOpenVisual={() => setTab('visualizacion')} /> : null}
       {tab === 'visualizacion' ? <VisualizationPanel visual={section.visual} theme={theme} /> : null}
-      <article className="surface-card review-card">
-        <h3>Mini repaso</h3>
-        <MathMarkdown content={section.recap} className="rich-text" />
-      </article>
-      <Pager previousItem={previousItem} nextItem={nextItem} />
     </section>
   );
 }
@@ -408,7 +384,7 @@ function ExerciseCard({ exercise, theme }) {
   );
 }
 
-function ExerciseSection({ group, previousItem, nextItem, theme }) {
+function ExerciseSection({ group, theme }) {
   return (
     <section id={group.id} className="page-section lesson-section">
       <div className="section-head">
@@ -425,12 +401,11 @@ function ExerciseSection({ group, previousItem, nextItem, theme }) {
           <ExerciseCard key={exercise.id} exercise={exercise} theme={theme} />
         ))}
       </div>
-      <Pager previousItem={previousItem} nextItem={nextItem} />
     </section>
   );
 }
 
-function ClosingSection({ previousItem }) {
+function ClosingSection() {
   return (
     <section id={closingSection.id} className="page-section closing-section">
       <div className="section-head">
@@ -453,7 +428,6 @@ function ClosingSection({ previousItem }) {
           <MathMarkdown content={closingSection.conclusion} className="rich-text" />
         </article>
       </div>
-      <Pager previousItem={previousItem} nextItem={null} />
       <footer className="footer-note">{courseMeta.footerText}</footer>
     </section>
   );
@@ -495,31 +469,25 @@ export default function App() {
       <Sidebar navItems={navItems} activeId={activeId} />
       <main className="main-content">
         <IntroSection />
-        {sections.map((section, index) => {
-          const navIndex = navItems.findIndex((item) => item.id === section.id);
+        {sections.map((section) => {
           return (
             <LessonSection
               key={section.id}
               section={section}
-              previousItem={navItems[navIndex - 1] ?? null}
-              nextItem={navItems[navIndex + 1] ?? null}
               theme={theme}
             />
           );
         })}
         {exerciseGroups.map((group) => {
-          const navIndex = navItems.findIndex((item) => item.id === group.id);
           return (
             <ExerciseSection
               key={group.id}
               group={group}
-              previousItem={navItems[navIndex - 1] ?? null}
-              nextItem={navItems[navIndex + 1] ?? null}
               theme={theme}
             />
           );
         })}
-        <ClosingSection previousItem={navItems[navItems.length - 2]} />
+        <ClosingSection />
       </main>
     </div>
   );
