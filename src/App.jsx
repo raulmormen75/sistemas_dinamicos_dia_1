@@ -70,6 +70,34 @@ function ThemeToggle({ theme, onToggle }) {
   );
 }
 
+function ChartIcon() {
+  return (
+    <svg viewBox="0 0 20 20" className="button-icon" aria-hidden="true">
+      <path
+        d="M3.5 15.5h13M5.5 12.2l2.8-2.9 2.5 1.9 3.7-4.3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="5.5" cy="12.2" r="1" fill="currentColor" stroke="none" />
+      <circle cx="8.3" cy="9.3" r="1" fill="currentColor" stroke="none" />
+      <circle cx="10.8" cy="11.2" r="1" fill="currentColor" stroke="none" />
+      <circle cx="14.5" cy="6.9" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function VisualizationLabel({ children }) {
+  return (
+    <span className="button-with-icon">
+      <ChartIcon />
+      <span>{children}</span>
+    </span>
+  );
+}
+
 function BlockRail({ navItems, activeId }) {
   return (
     <nav className="block-rail" aria-label="Barra de desplazamiento por bloques">
@@ -123,49 +151,32 @@ function Sidebar({ navItems, activeId }) {
   );
 }
 
-function IntroSection({ totalSections, nextItem, progress }) {
+function IntroSection() {
   return (
     <section id={introSection.id} className="page-section intro-section">
       <div className="hero-card hero-card--intro">
         <div className="hero-card__copy">
           <p className="eyebrow">Curso · Día 1</p>
           <h1>{courseMeta.title}</h1>
-          <p className="hero-card__description">{courseMeta.description}</p>
+          <MathMarkdown content={introSection.usageIntro} className="hero-card__description rich-text" />
         </div>
-        <div className="hero-card__panel hero-card__panel--compact">
-          <div className="hero-focus">
-            <p className="prompt-label">Meta del día</p>
-            <MathMarkdown content={introSection.objective} className="rich-text" />
-          </div>
-          <div className="hero-focus">
-            <p className="prompt-label">Ruta</p>
-            <p className="hero-card__route">{courseMeta.sequence.join(' → ')}</p>
-          </div>
-          <div className="hero-card__actions">
-            <div className="progress-card progress-card--hero">
-              <span>Progreso del día</span>
-              <strong>{progress}%</strong>
-              <div className="progress-bar">
-                <div className="progress-bar__fill" style={{ width: `${progress}%` }} />
-              </div>
+        <div className="hero-card__panel hero-card__panel--guide">
+          <div className="hero-guide">
+            <p className="prompt-label">Cómo usar la aplicación</p>
+            <div className="hero-guide__list">
+              {introSection.guideItems.map((item) => (
+                <article key={item.title} className="hero-guide__item">
+                  <h3 className="hero-guide__title">
+                    {item.kind === 'visualizacion' ? <VisualizationLabel>{item.title}</VisualizationLabel> : item.title}
+                  </h3>
+                  <p>{item.description}</p>
+                </article>
+              ))}
             </div>
-            <div className="hero-card__action-group">
-              <span className="hero-card__meta">{totalSections} secciones organizadas en una sola ruta.</span>
-              <button type="button" className="primary-button" onClick={() => scrollToSection(nextItem.id)}>
-                Empezar con el Bloque 1
-              </button>
-            </div>
+            <MathMarkdown content={introSection.usageNote} className="hero-guide__note rich-text" />
           </div>
         </div>
       </div>
-      <article className="surface-card surface-card--plain">
-        <h3>Qué se trabaja hoy</h3>
-        <ul className="plain-list plain-list--compact">
-          {introSection.focus.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </article>
     </section>
   );
 }
@@ -218,7 +229,7 @@ function ExampleCard({ example, onOpenVisual }) {
             {showErrors ? 'Ocultar errores' : 'Ver errores a evitar'}
           </button>
           <button type="button" className="secondary-button" onClick={onOpenVisual}>
-            Abrir visualización
+            <VisualizationLabel>Abrir visualización</VisualizationLabel>
           </button>
         </div>
       </div>
@@ -289,7 +300,6 @@ function LessonSection({ section, previousItem, nextItem, theme }) {
           <p className="eyebrow">{section.badge}</p>
           <h2>{section.title}</h2>
         </div>
-        <p className="section-head__hint">Qué significa, para qué sirve, cómo se resuelve y cómo se ve.</p>
       </div>
       <div className="info-grid">
         <article className="surface-card">
@@ -301,14 +311,6 @@ function LessonSection({ section, previousItem, nextItem, theme }) {
           <MathMarkdown content={section.economyUse} className="rich-text" />
         </article>
       </div>
-      <article className="surface-card">
-        <h3>Conceptos previos</h3>
-        <ul className="tag-list">
-          {section.prerequisites.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </article>
       <div className="tab-row">
         <button type="button" className={tab === 'explicacion' ? 'tab-button is-active' : 'tab-button'} onClick={() => setTab('explicacion')}>
           Explicación paso a paso
@@ -317,7 +319,7 @@ function LessonSection({ section, previousItem, nextItem, theme }) {
           Ejemplo resuelto
         </button>
         <button type="button" className={tab === 'visualizacion' ? 'tab-button is-active' : 'tab-button'} onClick={() => setTab('visualizacion')}>
-          Visualización
+          <VisualizationLabel>Visualización</VisualizationLabel>
         </button>
       </div>
       {tab === 'explicacion' ? (
@@ -363,7 +365,7 @@ function ExerciseCard({ exercise, theme }) {
             {showErrors ? 'Ocultar errores' : 'Ver errores a evitar'}
           </button>
           <button type="button" className="secondary-button" onClick={() => setShowVisual(!showVisual)}>
-            {showVisual ? 'Ocultar visualización' : 'Abrir visualización'}
+            <VisualizationLabel>{showVisual ? 'Ocultar visualización' : 'Abrir visualización'}</VisualizationLabel>
           </button>
         </div>
       </div>
@@ -465,11 +467,6 @@ export default function App() {
   const [activeId] = useActiveSection(navItems);
   const [theme, setTheme] = useState(getInitialTheme);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const activeIndex = Math.max(
-    0,
-    navItems.findIndex((item) => item.id === activeId),
-  );
-  const progress = activeIndex <= 0 ? 0 : Math.round((activeIndex / (navItems.length - 1)) * 100);
 
   useEffect(() => {
     document.body.dataset.theme = theme;
@@ -497,7 +494,7 @@ export default function App() {
       <ScrollTopButton visible={showScrollTop} />
       <Sidebar navItems={navItems} activeId={activeId} />
       <main className="main-content">
-        <IntroSection totalSections={navItems.length} nextItem={navItems[1]} progress={progress} />
+        <IntroSection />
         {sections.map((section, index) => {
           const navIndex = navItems.findIndex((item) => item.id === section.id);
           return (

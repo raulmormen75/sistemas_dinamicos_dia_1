@@ -4,12 +4,6 @@ const md = (strings, ...values) =>
 export const courseMeta = {
   title: 'Sistemas dinámicos aplicados a la economía',
   subtitle: 'Día 1. Bases matemáticas y económicas para entrar a sistemas dinámicos',
-  description:
-    'Una secuencia didáctica para construir desde cero el puente entre álgebra, cálculo básico, ecuaciones diferenciales de primer orden y estabilidad sencilla.',
-  objective: md`
-La finalidad del Día 1 es construir piso firme para leer funciones, despejar, derivar, integrar, encontrar equilibrios y entrar con seguridad a ecuaciones diferenciales básicas.
-`,
-  sequence: ['Funciones', 'Álgebra', 'Derivada', 'Equilibrio', 'EDO', 'Estabilidad'],
   footerText: 'Material creado por el Prof. Morales Mendoza Raul',
 };
 
@@ -18,21 +12,29 @@ export const introSection = {
   navLabel: 'Presentación',
   badge: 'Inicio',
   title: 'Presentación del Día 1',
-  summary: md`
-Este día no es de lucirse. Es de construir piso firme. Si la alumna no entiende álgebra, derivadas, equilibrio y cómo leer una tasa de cambio, después se va a perder en ecuaciones diferenciales y estabilidad.
+  usageIntro: md`
+Usa la barra de puntos del lado izquierdo para ir directo a cada bloque, a los ejercicios y al cierre. Dentro de cada tema puedes alternar entre explicación, ejemplo y visualización según lo que necesites estudiar en ese momento.
 `,
-  objective: md`
-Al final del Día 1, la alumna debe poder leer una función, despejar, derivar, integrar, encontrar equilibrios y resolver ecuaciones diferenciales básicas.
-`,
-  visualSequence: md`
-Secuencia de trabajo del día: Funciones → Álgebra → Derivada → Equilibrio → EDO → Estabilidad.
-`,
-  focus: [
-    'Comprender conceptos básicos.',
-    'Recordar procedimientos algebraicos.',
-    'Entender derivadas como tasas de cambio.',
-    'Relacionar matemáticas con interpretación económica.',
+  guideItems: [
+    {
+      kind: 'explicacion',
+      title: 'Explicación paso a paso',
+      description: 'Despliega el procedimiento en orden para seguir cada operación con calma y sin saltos.',
+    },
+    {
+      kind: 'ejemplo',
+      title: 'Ejemplo resuelto',
+      description: 'Muestra un caso completo con planteamiento, desarrollo, resultado e interpretación económica o matemática.',
+    },
+    {
+      kind: 'visualizacion',
+      title: 'Visualización',
+      description: 'Abre la representación gráfica para ver curvas, trayectorias, pendientes, equilibrio y cambios en parámetros o condiciones iniciales.',
+    },
   ],
+  usageNote: md`
+Los botones para ver desarrollo, errores a evitar y gráficas se abren solo cuando hacen falta, para mantener la lectura limpia y concentrarte en una cosa a la vez.
+`,
 };
 
 export const sections = [
@@ -57,7 +59,6 @@ Aquí:
 - $P$ es el precio.
 - $100$ y $2$ son parámetros del modelo.
 `,
-    prerequisites: ['suma', 'resta', 'multiplicación', 'lectura de letras en expresiones'],
     explanationParts: [
       {
         title: 'Sustitución ordenada',
@@ -158,7 +159,6 @@ Antes de resolver ecuaciones diferenciales, hay que dominar tres cosas: despeje,
     economyUse: md`
 Los modelos dinámicos todo el tiempo exigen despejar una variable, simplificar expresiones y reorganizar ecuaciones para resolverlas.
 `,
-    prerequisites: ['igualdad', 'operaciones básicas', 'signos'],
     explanationParts: [
       {
         title: 'A. Despeje',
@@ -271,7 +271,6 @@ $$
     economyUse: md`
 Sirve para estudiar cambio del precio, del capital, del inventario, de la deuda o de la producción.
 `,
-    prerequisites: ['potencia', 'producto por constante', 'interpretación de pendiente'],
     explanationParts: [
       {
         title: 'Regla de derivación paso a paso',
@@ -373,7 +372,6 @@ $$
     economyUse: md`
 Sirve para detectar niveles hacia donde el sistema se detiene o alrededor de los cuales se mueve.
 `,
-    prerequisites: ['signo positivo', 'signo negativo', 'resolución básica de ecuaciones'],
     explanationParts: [
       {
         title: 'Lectura por signos',
@@ -472,7 +470,6 @@ Son ecuaciones que se pueden ordenar para dejar de un lado todo lo de $y$ y del 
     economyUse: md`
 Aparecen en procesos de crecimiento, ajuste simple, acumulación y difusión.
 `,
-    prerequisites: ['derivada', 'fracciones', 'logaritmo', 'separación de términos'],
     explanationParts: [
       {
         title: 'Separación de variables',
@@ -566,7 +563,6 @@ $$
     economyUse: md`
 Sirve para modelar ajuste gradual hacia un nivel objetivo.
 `,
-    prerequisites: ['derivada', 'exponencial', 'multiplicación de toda la ecuación por una misma expresión'],
     explanationParts: [
       {
         title: 'Factor integrante',
@@ -678,7 +674,6 @@ $$
     economyUse: md`
 Sirve para modelar procesos donde hay crecimiento y también un freno dependiente del nivel de la variable.
 `,
-    prerequisites: ['ecuación lineal', 'potencia', 'sustitución de variable'],
     explanationParts: [
       {
         title: 'Conversión a ecuación lineal',
@@ -781,7 +776,6 @@ La estabilidad responde esta pregunta: si una trayectoria empieza cerca del equi
     economyUse: md`
 Sirve para entender si un precio, inventario, capital o nivel de adopción tiende a estabilizarse o no.
 `,
-    prerequisites: ['equilibrio', 'signo', 'interpretación de flechas'],
     explanationParts: [
       {
         title: 'Equilibrios y signos por intervalos',
