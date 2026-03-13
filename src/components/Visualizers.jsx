@@ -517,6 +517,15 @@ function LinearAutonomousVisualizer({ title, summary, props, theme }) {
   const stateRange = useMemo(() => range(props.xMin, props.xMax, 180), [props.xMax, props.xMin]);
   const solution = (time, x0) => equilibrium + (x0 - equilibrium) * Math.exp(-props.b * time);
   const activePoint = solution(cursor.value, initial);
+  const activeTrajectory = {
+    type: 'scatter',
+    mode: 'lines',
+    x: times,
+    y: times.map((time) => solution(time, initial)),
+    line: { color: palette.gold, width: 3.5 },
+    hovertemplate: `${props.label}(0)=${initial.toFixed(2)}<extra></extra>`,
+    name: 'Trayectoria activa',
+  };
 
   const familyTraces = props.initials.map((x0) => ({
     type: 'scatter',
@@ -581,6 +590,7 @@ function LinearAutonomousVisualizer({ title, summary, props, theme }) {
             <PlotFigure
               data={[
         ...familyTraces,
+        activeTrajectory,
         {
           type: 'scatter',
           mode: 'lines',
@@ -717,6 +727,15 @@ function SeparableVisualizer({ title, summary, theme }) {
   const cursor = useAnimatedCursor(model.tMax, model.tMax / 3);
   const times = useMemo(() => range(0, model.tMax, 200), [model.tMax]);
   const activePoint = model.solution(cursor.value, parameter);
+  const activeTrajectory = {
+    type: 'scatter',
+    mode: 'lines',
+    x: times,
+    y: times.map((time) => model.solution(time, parameter)),
+    line: { color: palette.gold, width: 3.5 },
+    hovertemplate: `C=${parameter.toFixed(2)}<extra></extra>`,
+    name: 'Solución activa',
+  };
 
   useEffect(() => {
     setParameter(modelKey === 'proportional' ? 1 : 0);
@@ -784,6 +803,7 @@ function SeparableVisualizer({ title, summary, theme }) {
               hovertemplate: `C=${value}<extra></extra>`,
               name: `C=${value}`,
             })),
+            activeTrajectory,
             {
               type: 'scatter',
               mode: 'markers',
@@ -816,6 +836,15 @@ function GrowthFieldVisualizer({ title, summary, props, theme }) {
   const times = useMemo(() => range(0, props.tMax, 200), [props.tMax]);
   const solution = (time, x0) => x0 * Math.exp(props.rate * time);
   const activePoint = solution(cursor.value, initial);
+  const activeTrajectory = {
+    type: 'scatter',
+    mode: 'lines',
+    x: times,
+    y: times.map((time) => solution(time, initial)),
+    line: { color: palette.gold, width: 3.5 },
+    hovertemplate: `y(0)=${initial.toFixed(2)}<extra></extra>`,
+    name: 'Trayectoria activa',
+  };
 
   return (
     <VisualizationShell title={title} summary={summary}>
@@ -859,6 +888,7 @@ function GrowthFieldVisualizer({ title, summary, props, theme }) {
               hovertemplate: `y(0)=${value}<extra></extra>`,
               name: `y(0)=${value}`,
             })),
+            activeTrajectory,
             {
               type: 'scatter',
               mode: 'markers',
@@ -892,6 +922,15 @@ function BernoulliVisualizer({ title, summary, props, theme }) {
   const bernoulli = (time, c) => 1 / (1 + c * Math.exp(time));
   const linearReference = (time, c) => 1 + c * Math.exp(-time);
   const activePoint = bernoulli(cursor.value, constant);
+  const activeTrajectory = {
+    type: 'scatter',
+    mode: 'lines',
+    x: times,
+    y: times.map((time) => bernoulli(time, constant)),
+    line: { color: palette.gold, width: 3.5 },
+    hovertemplate: `C=${constant.toFixed(2)}<extra></extra>`,
+    name: 'Bernoulli activa',
+  };
 
   return (
     <VisualizationShell title={title} summary={summary}>
@@ -934,6 +973,7 @@ function BernoulliVisualizer({ title, summary, props, theme }) {
               hovertemplate: `C=${value}<extra></extra>`,
               name: `Bernoulli C=${value}`,
             })),
+            activeTrajectory,
             {
               type: 'scatter',
               mode: 'lines',
@@ -984,6 +1024,15 @@ function LogisticVisualizer({ title, summary, props, theme }) {
   const activePoint = logisticSolution(cursor.value, initial, capacity);
   const slopeFn = (value) => value * (capacity - value);
   const familyInitials = [0.4, 1.2, capacity - 1, capacity + 1.4];
+  const activeTrajectory = {
+    type: 'scatter',
+    mode: 'lines',
+    x: times,
+    y: times.map((time) => logisticSolution(time, initial, capacity)),
+    line: { color: palette.gold, width: 3.5 },
+    hovertemplate: `x(0)=${initial.toFixed(2)}<extra></extra>`,
+    name: 'Trayectoria activa',
+  };
 
   return (
     <VisualizationShell title={title} summary={summary}>
@@ -1072,6 +1121,7 @@ function LogisticVisualizer({ title, summary, props, theme }) {
                 hovertemplate: `x(0)=${value.toFixed(2)}<extra></extra>`,
                 name: `x(0)=${value.toFixed(2)}`,
               })),
+              activeTrajectory,
               {
                 type: 'scatter',
                 mode: 'lines',
