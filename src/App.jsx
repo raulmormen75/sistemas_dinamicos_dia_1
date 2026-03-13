@@ -55,11 +55,17 @@ function ThemeToggle({ theme, onToggle }) {
   const nextTheme = theme === 'light' ? 'oscura' : 'clara';
 
   return (
-    <button type="button" className="theme-toggle" onClick={onToggle} aria-label={`Cambiar a vista ${nextTheme}`}>
+    <button
+      type="button"
+      className="theme-toggle"
+      onClick={onToggle}
+      aria-label={`Cambiar a vista ${nextTheme}`}
+      title={`Cambiar a vista ${nextTheme}`}
+    >
       <span className="theme-toggle__icon" aria-hidden="true">
         {theme === 'light' ? '◐' : '◑'}
       </span>
-      <span className="theme-toggle__text">Vista {theme === 'light' ? 'clara' : 'oscura'}</span>
+      <span className="theme-toggle__text">Vista {nextTheme}</span>
     </button>
   );
 }
