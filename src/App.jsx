@@ -158,7 +158,9 @@ function IntroSection() {
         <div className="hero-card__copy">
           <p className="eyebrow">Curso · Día 1</p>
           <h1>{courseMeta.title}</h1>
-          <MathMarkdown content={introSection.usageIntro} className="hero-card__description rich-text" />
+          <div className="hero-card__description rich-text">
+            <MathMarkdown content={introSection.usageIntro} />
+          </div>
         </div>
         <div className="hero-card__panel hero-card__panel--guide">
           <div className="hero-guide">
@@ -173,7 +175,9 @@ function IntroSection() {
                 </article>
               ))}
             </div>
-            <MathMarkdown content={introSection.usageNote} className="hero-guide__note rich-text" />
+            <div className="hero-guide__note rich-text">
+              <MathMarkdown content={introSection.usageNote} />
+            </div>
           </div>
         </div>
       </div>
