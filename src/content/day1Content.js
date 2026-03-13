@@ -1,4 +1,5 @@
-const md = String.raw;
+const md = (strings, ...values) =>
+  String.raw({ raw: strings }, ...values).replace(/\\\\/g, '\\');
 
 export const courseMeta = {
   title: 'Sistemas dinámicos aplicados a la economía',
@@ -620,7 +621,7 @@ $$
 `,
       ask: 'Calcular la solución general y reconocer el equilibrio.',
       steps: [
-        md`Factor integrante: $$\\mu(t)=e^{2t}$$`,
+        md`Factor integrante: $\\mu(t)=e^{2t}$.`,
         md`$$e^{2t}\\frac{dy}{dt} + 2e^{2t}y = 6e^{2t}$$`,
         md`$$\\frac{d}{dt}(e^{2t}y)=6e^{2t}$$`,
         md`$$e^{2t}y=3e^{2t}+C$$`,
@@ -739,7 +740,7 @@ $$
       ask: 'Reconocer el cambio de variable y describir la forma final de la solución.',
       steps: [
         md`$$v = y^{-1} = \\frac{1}{y}$$`,
-        md`La ecuación para $v$ queda lineal: $$\\frac{dv}{dt} - v = -1$$`,
+        md`La ecuación para $v$ queda lineal: $\\frac{dv}{dt} - v = -1$.`,
         md`$$v = 1 + Ce^t$$`,
         md`$$y = \\frac{1}{1+Ce^t}$$`,
       ],
@@ -979,7 +980,7 @@ $$
           md`$$\\int \\frac{1}{y}\\,dy=\\int 5\\,dt$$`,
           md`$$\\ln|y|=5t+C$$`,
           md`$$y=Ce^{5t}$$`,
-          md`Usando $y(0)=3$: $$3=C$$`,
+          md`Usando $y(0)=3$: $3=C$.`,
         ],
         result: md`$$y=3e^{5t}$$`,
         interpretation: md`
@@ -1019,7 +1020,7 @@ $$
 `,
         ask: 'Obtener la solución general.',
         steps: [
-          md`Factor integrante: $$\\mu(t)=e^{3t}$$`,
+          md`Factor integrante: $\\mu(t)=e^{3t}$.`,
           md`$$\\frac{d}{dt}(e^{3t}y)=9e^{3t}$$`,
           md`$$e^{3t}y=3e^{3t}+C$$`,
           md`$$y=3+Ce^{-3t}$$`,
@@ -1079,9 +1080,9 @@ $$
         ask: 'Encontrar la trayectoria del precio.',
         steps: [
           md`$$\\frac{dp}{dt}+p=12$$`,
-          md`Factor integrante: $$e^t$$`,
+          md`Factor integrante: $e^t$.`,
           md`$$p=12+Ce^{-t}$$`,
-          md`Usando $p(0)=5$: $$5=12+C \\Rightarrow C=-7$$`,
+          md`Usando $p(0)=5$: $5=12+C \\Rightarrow C=-7$.`,
         ],
         result: md`$$p(t)=12-7e^{-t}$$`,
         interpretation: md`
@@ -1126,9 +1127,9 @@ $$
 `,
         ask: 'Encontrar la trayectoria y el equilibrio.',
         steps: [
-          md`Equilibrio: $$18-0.6I=0 \\Rightarrow I=30$$`,
-          md`Solución general: $$I=30+Ce^{-0.6t}$$`,
-          md`Usando $I(0)=20$: $$20=30+C \\Rightarrow C=-10$$`,
+          md`Equilibrio: $18-0.6I=0 \\Rightarrow I=30$.`,
+          md`Solución general: $I=30+Ce^{-0.6t}$.`,
+          md`Usando $I(0)=20$: $20=30+C \\Rightarrow C=-10$.`,
         ],
         result: md`$$I(t)=30-10e^{-0.6t}$$`,
         interpretation: md`
@@ -1173,9 +1174,9 @@ $$
 `,
         ask: 'Encontrar la trayectoria del capital.',
         steps: [
-          md`Equilibrio: $$10-0.5K=0 \\Rightarrow K=20$$`,
-          md`Solución general: $$K=20+Ce^{-0.5t}$$`,
-          md`Usando $K(0)=30$: $$30=20+C \\Rightarrow C=10$$`,
+          md`Equilibrio: $10-0.5K=0 \\Rightarrow K=20$.`,
+          md`Solución general: $K=20+Ce^{-0.5t}$.`,
+          md`Usando $K(0)=30$: $30=20+C \\Rightarrow C=10$.`,
         ],
         result: md`$$K(t)=20+10e^{-0.5t}$$`,
         interpretation: md`

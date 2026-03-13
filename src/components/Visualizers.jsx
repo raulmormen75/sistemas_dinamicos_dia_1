@@ -657,7 +657,7 @@ function LinearAutonomousVisualizer({ title, summary, props, theme }) {
             ]}
             layout={{
               xaxis: { title: props.label, gridcolor: palette.grid, color: palette.graphite },
-              yaxis: { title: `d${props.label}/dt`, gridcolor: palette.grid, color: palette.graphite },
+              yaxis: { title: 'Tasa de cambio', gridcolor: palette.grid, color: palette.graphite },
               showlegend: false,
             }}
             theme={theme}

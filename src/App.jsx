@@ -54,13 +54,9 @@ function useActiveSection(navItems) {
 function StickyHeader({ activeItem, progress, nextItem }) {
   return (
     <div className="sticky-header">
-      <div>
-        <p className="eyebrow">Día 1</p>
-        <h1>{courseMeta.title}</h1>
-        <p className="sticky-header__active">
-          <span>{activeItem?.badge ?? 'Ruta del día'}</span>
-          <strong>{activeItem?.title ?? courseMeta.subtitle}</strong>
-        </p>
+      <div className="sticky-header__context">
+        <p className="eyebrow">Recorrido</p>
+        <p className="sticky-header__title">{activeItem?.title ?? introSection.title}</p>
       </div>
       <div className="sticky-header__actions">
         <div className="progress-card">
@@ -96,12 +92,14 @@ function ThemeToggle({ theme, onToggle }) {
 function BlockRail({ navItems, activeId }) {
   return (
     <nav className="block-rail" aria-label="Barra de desplazamiento por bloques">
-      {navItems.map((item, index) => (
+      {navItems.map((item) => (
         <button
           key={item.id}
           type="button"
           className={item.id === activeId ? 'block-rail__dot is-active' : 'block-rail__dot'}
-          title={`${index + 1}. ${item.title}`}
+          title={item.title}
+          data-tooltip={item.title}
+          aria-label={item.title}
           onClick={() => scrollToSection(item.id)}
         >
           <span className="sr-only">{item.title}</span>
@@ -130,22 +128,10 @@ function Sidebar({ navItems, activeId }) {
       <aside className="sidebar">
         <div className="sidebar__brand">
           <p className="eyebrow">Curso</p>
-          <h2>{courseMeta.subtitle}</h2>
+          <h2>Día 1</h2>
           <p>{courseMeta.description}</p>
+          <p className="sidebar__tip">Usa la barra de puntos para moverte entre bloques, ejercicios y cierre.</p>
         </div>
-        <nav className="sidebar__nav" aria-label="Navegación principal">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              className={item.id === activeId ? 'nav-link is-active' : 'nav-link'}
-              onClick={() => scrollToSection(item.id)}
-            >
-              <span>{item.navLabel}</span>
-              <small>{item.title}</small>
-            </button>
-          ))}
-        </nav>
       </aside>
       <div className="mobile-nav" aria-label="Navegación del Día 1">
         {navItems.map((item) => (
@@ -166,61 +152,37 @@ function Sidebar({ navItems, activeId }) {
 function IntroSection({ totalSections, nextItem }) {
   return (
     <section id={introSection.id} className="page-section intro-section">
-      <div className="hero-card">
+      <div className="hero-card hero-card--intro">
         <div className="hero-card__copy">
           <p className="eyebrow">{introSection.badge}</p>
-          <h2>{courseMeta.subtitle}</h2>
+          <h1>{courseMeta.title}</h1>
           <p className="hero-card__description">{introSection.summary}</p>
-          <MathMarkdown content={courseMeta.objective} className="rich-text" />
-          <div className="sequence-row">
-            {courseMeta.sequence.map((item, index) => (
-              <span key={item} className="sequence-pill">
-                {item}
-                {index < courseMeta.sequence.length - 1 ? <em>→</em> : null}
-              </span>
-            ))}
-          </div>
         </div>
-        <div className="hero-card__panel">
-          <div className="hero-stat">
-            <span>Bloques</span>
-            <strong>8</strong>
-          </div>
-          <div className="hero-stat">
-            <span>Ejercicios</span>
-            <strong>8</strong>
-          </div>
-          <div className="hero-stat">
-            <span>Secciones del día</span>
-            <strong>{totalSections}</strong>
+        <div className="hero-card__panel hero-card__panel--compact">
+          <div className="hero-focus">
+            <p className="prompt-label">Meta del día</p>
+            <MathMarkdown content={introSection.objective} className="rich-text" />
           </div>
           <div className="hero-focus">
-            <h3>Meta de aprendizaje</h3>
-            <MathMarkdown content={introSection.objective} className="rich-text" />
-            <MathMarkdown content={introSection.visualSequence} className="rich-text" />
+            <p className="prompt-label">Ruta</p>
+            <p className="hero-card__route">{courseMeta.sequence.join(' → ')}</p>
+          </div>
+          <div className="hero-card__actions">
+            <span className="hero-card__meta">{totalSections} secciones organizadas en una sola ruta.</span>
+            <button type="button" className="primary-button" onClick={() => scrollToSection(nextItem.id)}>
+              Empezar con el Bloque 1
+            </button>
           </div>
         </div>
       </div>
-      <div className="info-grid">
-        <article className="surface-card">
-          <h3>Qué se busca hoy</h3>
-          <ul className="plain-list">
-            {introSection.focus.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </article>
-        <article className="surface-card">
-          <h3>Uso docente y estudio autónomo</h3>
-          <p>
-            La ruta está organizada para explicar desde cero, practicar de inmediato y volver a interpretar cada resultado
-            con sentido económico.
-          </p>
-          <button type="button" className="secondary-button" onClick={() => scrollToSection(nextItem.id)}>
-            Empezar con el Bloque 1
-          </button>
-        </article>
-      </div>
+      <article className="surface-card surface-card--plain">
+        <h3>Qué se trabaja hoy</h3>
+        <ul className="plain-list plain-list--compact">
+          {introSection.focus.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </article>
     </section>
   );
 }
@@ -255,7 +217,7 @@ function StepNavigator({ steps }) {
 }
 
 function ExampleCard({ example, onOpenVisual }) {
-  const [showSolution, setShowSolution] = useState(true);
+  const [showSolution, setShowSolution] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
   return (
@@ -524,7 +486,7 @@ export default function App() {
     0,
     navItems.findIndex((item) => item.id === activeId),
   );
-  const progress = Math.round(((activeIndex + 1) / navItems.length) * 100);
+  const progress = activeIndex <= 0 ? 0 : Math.round((activeIndex / (navItems.length - 1)) * 100);
   const activeItem = navItems[activeIndex];
   const nextItem = navItems[activeIndex + 1] ?? null;
 
