@@ -51,31 +51,6 @@ function useActiveSection(navItems) {
   return [activeId, setActiveId];
 }
 
-function StickyHeader({ activeItem, progress, nextItem }) {
-  return (
-    <div className="sticky-header">
-      <div className="sticky-header__context">
-        <p className="eyebrow">Recorrido</p>
-        <p className="sticky-header__title">{activeItem?.title ?? introSection.title}</p>
-      </div>
-      <div className="sticky-header__actions">
-        <div className="progress-card">
-          <span>Progreso del día</span>
-          <strong>{progress}%</strong>
-          <div className="progress-bar">
-            <div className="progress-bar__fill" style={{ width: `${progress}%` }} />
-          </div>
-        </div>
-        {nextItem ? (
-          <button type="button" className="primary-button" onClick={() => scrollToSection(nextItem.id)}>
-            Continuar
-          </button>
-        ) : null}
-      </div>
-    </div>
-  );
-}
-
 function ThemeToggle({ theme, onToggle }) {
   const nextTheme = theme === 'light' ? 'oscura' : 'clara';
 
@@ -125,14 +100,7 @@ function ScrollTopButton({ visible }) {
 function Sidebar({ navItems, activeId }) {
   return (
     <>
-      <aside className="sidebar">
-        <div className="sidebar__brand">
-          <p className="eyebrow">Curso</p>
-          <h2>Día 1</h2>
-          <p>{courseMeta.description}</p>
-          <p className="sidebar__tip">Usa la barra de puntos para moverte entre bloques, ejercicios y cierre.</p>
-        </div>
-      </aside>
+      <aside className="sidebar" aria-hidden="true" />
       <div className="mobile-nav" aria-label="Navegación del Día 1">
         {navItems.map((item) => (
           <button
@@ -149,14 +117,14 @@ function Sidebar({ navItems, activeId }) {
   );
 }
 
-function IntroSection({ totalSections, nextItem }) {
+function IntroSection({ totalSections, nextItem, progress }) {
   return (
     <section id={introSection.id} className="page-section intro-section">
       <div className="hero-card hero-card--intro">
         <div className="hero-card__copy">
-          <p className="eyebrow">{introSection.badge}</p>
+          <p className="eyebrow">Curso · Día 1</p>
           <h1>{courseMeta.title}</h1>
-          <p className="hero-card__description">{introSection.summary}</p>
+          <p className="hero-card__description">{courseMeta.description}</p>
         </div>
         <div className="hero-card__panel hero-card__panel--compact">
           <div className="hero-focus">
@@ -168,10 +136,19 @@ function IntroSection({ totalSections, nextItem }) {
             <p className="hero-card__route">{courseMeta.sequence.join(' → ')}</p>
           </div>
           <div className="hero-card__actions">
-            <span className="hero-card__meta">{totalSections} secciones organizadas en una sola ruta.</span>
-            <button type="button" className="primary-button" onClick={() => scrollToSection(nextItem.id)}>
-              Empezar con el Bloque 1
-            </button>
+            <div className="progress-card progress-card--hero">
+              <span>Progreso del día</span>
+              <strong>{progress}%</strong>
+              <div className="progress-bar">
+                <div className="progress-bar__fill" style={{ width: `${progress}%` }} />
+              </div>
+            </div>
+            <div className="hero-card__action-group">
+              <span className="hero-card__meta">{totalSections} secciones organizadas en una sola ruta.</span>
+              <button type="button" className="primary-button" onClick={() => scrollToSection(nextItem.id)}>
+                Empezar con el Bloque 1
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -487,8 +464,6 @@ export default function App() {
     navItems.findIndex((item) => item.id === activeId),
   );
   const progress = activeIndex <= 0 ? 0 : Math.round((activeIndex / (navItems.length - 1)) * 100);
-  const activeItem = navItems[activeIndex];
-  const nextItem = navItems[activeIndex + 1] ?? null;
 
   useEffect(() => {
     document.body.dataset.theme = theme;
@@ -516,8 +491,7 @@ export default function App() {
       <ScrollTopButton visible={showScrollTop} />
       <Sidebar navItems={navItems} activeId={activeId} />
       <main className="main-content">
-        <StickyHeader activeItem={activeItem} progress={progress} nextItem={nextItem} />
-        <IntroSection totalSections={navItems.length} nextItem={navItems[1]} />
+        <IntroSection totalSections={navItems.length} nextItem={navItems[1]} progress={progress} />
         {sections.map((section, index) => {
           const navIndex = navItems.findIndex((item) => item.id === section.id);
           return (

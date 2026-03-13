@@ -130,25 +130,28 @@ a {
 
 .app-shell {
   display: grid;
-  grid-template-columns: 272px minmax(0, 1fr);
+  grid-template-columns: 112px minmax(0, 1fr);
   min-height: 100vh;
 }
 
 .sidebar {
   position: sticky;
   top: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
   height: 100vh;
-  padding: 2.15rem 1.3rem;
   background: var(--sidebar-bg);
-  color: var(--sidebar-text);
   border-right: 1px solid var(--nav-link-border);
 }
 
-.sidebar__brand h2,
-.sticky-header__title,
+.sidebar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(198, 167, 94, 0.08), transparent 22%),
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.12) 100%);
+  pointer-events: none;
+}
+
 .hero-card h1,
 .hero-card h2,
 .section-head h2,
@@ -159,54 +162,9 @@ a {
   font-weight: 800;
 }
 
-.sidebar__brand p:last-child {
-  margin: 0.8rem 0 0;
-  color: var(--sidebar-subtext);
-  line-height: 1.55;
-}
-
-.sidebar__tip {
-  padding-top: 1rem;
-  border-top: 1px solid var(--nav-link-border);
-}
-
-.sidebar__nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  overflow: auto;
-  padding-right: 0.35rem;
-}
-
-.nav-link {
-  border: 1px solid var(--nav-link-border);
-  border-radius: 18px;
-  padding: 0.88rem 0.95rem;
-  text-align: left;
-  background: var(--nav-link-bg);
-  color: inherit;
-  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
-}
-
-.nav-link span,
 .nav-chip {
   display: block;
   font-weight: 700;
-}
-
-.nav-link small {
-  display: block;
-  margin-top: 0.28rem;
-  color: var(--sidebar-subtext);
-  font-size: 0.78rem;
-  line-height: 1.4;
-}
-
-.nav-link:hover,
-.nav-link.is-active {
-  transform: translateX(4px);
-  border-color: rgba(198, 167, 94, 0.75);
-  background: var(--nav-link-active);
 }
 
 .mobile-nav {
@@ -215,59 +173,7 @@ a {
 
 .main-content {
   min-width: 0;
-  padding: 5rem 2.2rem 4rem;
-}
-
-.sticky-header {
-  position: static;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding: 0.95rem 1rem;
-  margin-bottom: 1.2rem;
-  backdrop-filter: blur(12px);
-  background: var(--surface-strong);
-  border: 1px solid var(--border-strong);
-  border-radius: 20px;
-  box-shadow: none;
-}
-
-.sticky-header__context {
-  display: grid;
-  gap: 0.2rem;
-}
-
-.sticky-header__title {
-  font-size: 1.02rem;
-  color: var(--text-main);
-}
-
-.sticky-header__active {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  align-items: center;
-  margin: 0.55rem 0 0;
-}
-
-.sticky-header__active span {
-  padding: 0.3rem 0.65rem;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--button-soft-text);
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
-.sticky-header__active strong {
-  color: var(--text-main);
-}
-
-.sticky-header__actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  padding: 2.5rem 2.6rem 4rem;
 }
 
 .progress-card {
@@ -405,15 +311,26 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
   gap: 0.75rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border-soft);
 }
 
+.hero-card__action-group {
+  display: grid;
+  justify-items: end;
+  gap: 0.8rem;
+}
+
 .hero-card__meta {
   color: var(--text-muted);
   line-height: 1.6;
+  text-align: right;
+}
+
+.progress-card--hero {
+  min-width: min(280px, 100%);
 }
 
 .sequence-row {
@@ -877,7 +794,7 @@ a {
 .theme-toggle {
   position: fixed;
   top: calc(env(safe-area-inset-top, 0px) + 1rem);
-  right: 1rem;
+  left: 1rem;
   z-index: 120;
   display: inline-flex;
   align-items: center;
@@ -907,7 +824,7 @@ a {
 
 .block-rail {
   position: fixed;
-  left: 226px;
+  left: 40px;
   top: 50%;
   z-index: 90;
   display: flex;
@@ -1081,12 +998,11 @@ a {
 
   .theme-toggle {
     top: calc(env(safe-area-inset-top, 0px) + 0.75rem);
-    right: 0.75rem;
+    left: 0.75rem;
   }
 }
 
 @media (max-width: 960px) {
-  .sticky-header,
   .hero-card,
   .info-grid,
   .chart-grid,
@@ -1098,11 +1014,6 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .sticky-header {
-    position: static;
-  }
-
-  .sticky-header__actions,
   .section-card__header,
   .section-head {
     flex-direction: column;
@@ -1120,6 +1031,14 @@ a {
 
   .plain-list--compact {
     grid-template-columns: 1fr;
+  }
+
+  .hero-card__action-group {
+    justify-items: stretch;
+  }
+
+  .hero-card__meta {
+    text-align: left;
   }
 }
 
