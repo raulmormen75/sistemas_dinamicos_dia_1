@@ -1,0 +1,1553 @@
+Aquí tienes la **especificación completa para Codex** y el **contenido del Día 1** ya reestructurado para una **aplicación didáctica**. Está pensado para copiarse como base de desarrollo, con bloques homogéneos, ejercicios enumerados, errores a evitar, visualización interactiva y tu paleta de marca personal. 🧠📈
+
+---
+
+# Especificación para Codex: aplicación didáctica del Día 1
+
+## Curso: Sistemas dinámicos aplicados a la economía
+
+## 1. Objetivo general de la aplicación
+
+Construir una aplicación web didáctica, moderna, clara y visualmente limpia, orientada a una asesoría intensiva de **4 días** sobre sistemas dinámicos aplicados a la economía. Esta primera aplicación corresponde solo al **Día 1** y debe ayudar a que una alumna comprenda desde cero:
+
+[
+\text{álgebra básica} \rightarrow \text{cálculo básico} \rightarrow \text{ecuaciones diferenciales de primer orden} \rightarrow \text{equilibrio y estabilidad}
+]
+
+La aplicación debe enseñar, reforzar, evaluar y visualizar. No debe verse saturada, infantil ni llena de cajas dentro de cajas. Debe sentirse como una plataforma didáctica actual, limpia y profesional, similar al orden visual de plataformas educativas contemporáneas.
+
+---
+
+## 2. Identidad visual y estilo
+
+Usar la paleta de marca personal del autor en toda la aplicación:
+
+* **Negro profundo**: (#0B0B0B)
+* **Grafito**: (#2E2E2E)
+* **Azul noche académico**: (#1C2A3A)
+* **Marfil claro**: (#F2F2EE)
+* **Dorado sobrio**: (#C6A75E)
+* **Rojo vino profundo**: (#6E1F28)
+
+### Aplicación visual sugerida
+
+* Fondo general en **marfil claro**.
+* Barra lateral o encabezado principal en **azul noche académico**.
+* Texto principal en **negro profundo**.
+* Subtítulos, indicadores de avance y detalles finos en **dorado sobrio**.
+* Alertas de error, advertencias y «errores a evitar» en **rojo vino profundo**.
+* Tarjetas o bloques de contenido con fondo blanco o marfil muy suave, sombra ligera y bordes redondeados discretos.
+
+### Estilo general
+
+* Diseño limpio, respirable y profesional.
+* Nada de meter una tarjeta dentro de otra tarjeta dentro de otra tarjeta.
+* Usar secciones amplias con jerarquía clara.
+* Cada bloque debe verse como una unidad didáctica bien separada.
+* Tipografía moderna, legible y sobria.
+* El contenido debe sentirse académico, bonito y entendible, no rígido.
+
+---
+
+## 3. Estructura visual de la aplicación
+
+La aplicación debe tener esta organización:
+
+### A. Encabezado principal
+
+Debe incluir:
+
+* Título del curso
+* Subtítulo: «Día 1. Bases matemáticas y económicas para entrar a sistemas dinámicos»
+* Indicador de progreso del día
+* Botón o menú para navegar entre bloques
+
+### B. Menú lateral o menú superior fijo
+
+Debe permitir saltar a:
+
+1. Presentación del Día 1
+2. Bloque 1. Variables, parámetros y funciones
+3. Bloque 2. Álgebra mínima necesaria
+4. Bloque 3. Derivada y tasa de cambio
+5. Bloque 4. Equilibrio y lectura dinámica
+6. Bloque 5. Ecuaciones diferenciales separables
+7. Bloque 6. Ecuación lineal de primer orden
+8. Bloque 7. Bernoulli
+9. Bloque 8. Estabilidad y diagrama de fase
+10. Ejercicios matemáticos
+11. Ejercicios económicos
+12. Cierre del Día 1
+
+### C. Estructura interna de cada bloque
+
+Cada bloque debe tener siempre el mismo orden:
+
+1. **Nombre del bloque**
+2. **Qué significa en palabras simples**
+3. **Para qué sirve en economía**
+4. **Conceptos previos**
+5. **Explicación paso a paso**
+6. **Ejemplo resuelto**
+7. **Errores a evitar**
+8. **Visualización interactiva**
+9. **Mini repaso**
+10. **Botón para continuar**
+
+Esa homogeneidad debe mantenerse desde el primer bloque hasta el último. No hacer los primeros extensos y los últimos flojos.
+
+---
+
+## 4. Requisitos técnicos y pedagógicos para Codex
+
+### Requisitos pedagógicos
+
+* Explicar desde cero.
+* No asumir que la alumna domina álgebra ni cálculo.
+* Mantener lenguaje claro, profesional y entendible.
+* Toda expresión matemática debe mostrarse en **LaTeX renderizado**.
+* Incluir explicaciones matemáticas y económicas.
+* Cada ejemplo y cada ejercicio debe tener apartado de **«Errores a evitar»**.
+* Los ejercicios deben presentarse primero **matemáticos** y luego **económicos**.
+* Los desarrollos deben ser cortos, entendibles y suficientes para llegar al resultado.
+* Cada ejercicio debe cerrar con interpretación económica o matemática y con sugerencia visual.
+
+### Requisitos técnicos
+
+* Construir una aplicación responsiva.
+* Usar renderizado matemático compatible con LaTeX.
+* Incorporar visualizaciones interactivas (2D) y, cuando aporte valor, (3D).
+* Permitir sliders para parámetros y condiciones iniciales.
+* Permitir activar y desactivar capas visuales como:
+
+  * trayectoria
+  * equilibrio
+  * campo de pendientes
+  * diagrama de fase
+  * soluciones múltiples
+* Incluir animación simple del movimiento sobre la trayectoria cuando sea útil.
+
+### Gráficas y visualizaciones
+
+Usar aparatos visuales claros y didácticos, no decorativos.
+
+#### Visualizaciones (2D)
+
+Incluir cuando corresponda:
+
+* gráfica de función
+* gráfica de derivada
+* campo de pendientes
+* trayectoria temporal
+* línea de equilibrio
+* diagrama de fase unidimensional
+* comparación entre varias soluciones con distintas condiciones iniciales
+
+#### Visualizaciones (3D)
+
+Usar solo donde sí ayuden a entender:
+
+* superficie de trayectorias (,x(t;x_0),) con ejes:
+  [
+  t,\quad x_0,\quad x
+  ]
+* superficie del campo dinámico cuando tenga sentido interpretativo
+* exploración interactiva del efecto de parámetros sobre trayectorias
+
+No meter (3D) por adorno. Si no ayuda, dejarlo fuera.
+
+---
+
+## 5. Instrucciones muy específicas para Codex sobre gráficos interactivos
+
+### Para ecuaciones diferenciales
+
+Cuando haya una ecuación de la forma:
+[
+\frac{dy}{dt}=f(t,y)
+]
+generar:
+
+1. **Campo de pendientes** completo
+2. **Curvas solución** para varias condiciones iniciales
+3. **Curva destacada** de la condición inicial activa
+4. **Lectura visual del signo de la pendiente**
+5. **Animación del punto** que avanza sobre la solución
+
+### Para modelos autónomos
+
+Cuando haya ecuaciones de la forma:
+[
+\frac{dx}{dt}=f(x)
+]
+generar:
+
+1. **Gráfica de (f(x))**
+2. **Línea de fase**
+3. **Flechas de dirección**
+4. **Marcado de equilibrios**
+5. **Clasificación visual** entre estable e inestable
+6. **Trayectorias temporales** para valores iniciales distintos
+
+### Para funciones y cálculo
+
+Cuando el contenido sea de funciones, derivadas o álgebra:
+
+* mostrar gráfica original
+* mostrar gráfica derivada si aplica
+* marcar interceptos o puntos relevantes
+* permitir ver sustitución de parámetros
+* incluir una pequeña animación cuando cambian parámetros
+
+### Comportamiento visual esperado
+
+* Transiciones suaves
+* Nada de efectos innecesarios
+* Nada de saturación
+* Panel lateral limpio para controles
+* Leyendas claras
+* Botón «Reiniciar»
+* Tooltips sencillos
+* Colores de curvas consistentes con la paleta del autor
+
+---
+
+# Contenido del Día 1 para la aplicación
+
+---
+
+## Presentación del Día 1
+
+### Título
+
+**Día 1. Bases matemáticas y económicas para entrar a sistemas dinámicos**
+
+### Propósito
+
+Este día no es de lucirse. Es de construir piso firme. Si la alumna no entiende álgebra, derivadas, equilibrio y cómo leer una tasa de cambio, después se va a perder en ecuaciones diferenciales y estabilidad.
+
+### Meta de aprendizaje
+
+Al final del Día 1, la alumna debe poder:
+
+[
+\text{leer una función, despejar, derivar, integrar, encontrar equilibrios y resolver ecuaciones diferenciales básicas}
+]
+
+### Visual de apertura sugerida
+
+Una línea de progreso donde se vea la secuencia:
+
+[
+\text{Funciones} \rightarrow \text{Álgebra} \rightarrow \text{Derivada} \rightarrow \text{Equilibrio} \rightarrow \text{EDO} \rightarrow \text{Estabilidad}
+]
+
+---
+
+# Bloque 1. Variables, parámetros y funciones
+
+## Qué significa en palabras simples
+
+Una variable es algo que cambia. Un parámetro es algo que se mantiene fijo dentro del modelo. Una función muestra cómo una variable depende de otra.
+
+## Para qué sirve en economía
+
+Porque en economía casi todo se expresa como relaciones entre variables. Por ejemplo:
+
+[
+Q = 100 - 2P
+]
+
+Aquí:
+
+* (Q) es la cantidad
+* (P) es el precio
+* (100) y (2) son parámetros del modelo
+
+## Conceptos previos
+
+* suma
+* resta
+* multiplicación
+* lectura de letras en expresiones
+
+## Explicación paso a paso
+
+Si la función es:
+[
+Q = 100 - 2P
+]
+y el precio vale:
+[
+P=20
+]
+entonces se sustituye:
+
+[
+Q = 100 - 2(20)
+]
+[
+Q = 100 - 40
+]
+[
+Q = 60
+]
+
+Eso dice que cuando el precio es (20), la cantidad es (60).
+
+## Ejemplo resuelto 1
+
+### Planteamiento
+
+Dada la función:
+[
+Q = 80 - 4P
+]
+encuentra (Q) cuando:
+[
+P = 10
+]
+
+### Desarrollo
+
+[
+Q = 80 - 4(10)
+]
+[
+Q = 80 - 40
+]
+[
+Q = 40
+]
+
+### Resultado
+
+[
+Q = 40
+]
+
+### Errores a evitar
+
+* multiplicar mal (4 \cdot 10)
+* olvidar los paréntesis al sustituir
+* confundir la variable con el parámetro
+* pensar que (80) también cambia
+
+## Visualización interactiva
+
+* gráfica (2D) de la recta
+* deslizador para mover (P)
+* punto animado sobre la recta
+* lectura automática del valor de (Q)
+
+## Mini repaso
+
+Si sube (P), en esta función baja (Q). La relación es negativa.
+
+---
+
+# Bloque 2. Álgebra mínima necesaria
+
+## Qué significa en palabras simples
+
+Antes de resolver ecuaciones diferenciales, hay que dominar tres cosas:
+
+1. despeje
+2. factorización
+3. simplificación de fracciones algebraicas
+
+## Para qué sirve en economía
+
+Porque los modelos dinámicos todo el tiempo exigen:
+
+* despejar una variable
+* simplificar expresiones
+* reorganizar ecuaciones para resolverlas
+
+## Conceptos previos
+
+* igualdad
+* operaciones básicas
+* signos
+
+## Explicación paso a paso
+
+### A. Despeje
+
+De:
+[
+Q = 100 - 2P
+]
+despejar (P).
+
+Paso 1:
+[
+Q - 100 = -2P
+]
+
+Paso 2:
+[
+P = \frac{Q-100}{-2}
+]
+
+Paso 3, reescribiendo:
+[
+P = \frac{100-Q}{2}
+]
+
+### B. Factorización
+
+[
+x^2-9=x^2-3^2=(x-3)(x+3)
+]
+
+### C. Fracción algebraica
+
+[
+\frac{x^2-9}{x-3}
+]
+
+Sustituyendo la factorización:
+[
+\frac{(x-3)(x+3)}{x-3}=x+3,\qquad x\neq 3
+]
+
+## Ejemplo resuelto 2
+
+### Planteamiento
+
+Simplifica:
+[
+\frac{x^2-16}{x-4}
+]
+
+### Desarrollo
+
+[
+x^2-16=(x-4)(x+4)
+]
+
+Entonces:
+[
+\frac{(x-4)(x+4)}{x-4}=x+4,\qquad x\neq 4
+]
+
+### Resultado
+
+[
+x+4,\qquad x\neq 4
+]
+
+### Errores a evitar
+
+* cancelar términos en vez de factores
+* olvidar que (x\neq 4)
+* factorizar mal una diferencia de cuadrados
+* pensar que simplificar borra la restricción original
+
+## Visualización interactiva
+
+* comparar en (2D):
+  [
+  y=\frac{x^2-16}{x-4}
+  \quad \text{y} \quad
+  y=x+4
+  ]
+* mostrar el hueco en (x=4)
+
+## Mini repaso
+
+La expresión simplificada puede verse más sencilla, pero conserva la historia de la expresión original.
+
+---
+
+# Bloque 3. Derivada y tasa de cambio
+
+## Qué significa en palabras simples
+
+La derivada mide qué tan rápido cambia una variable.
+
+Si una variable depende del tiempo, su derivada se escribe como:
+[
+\frac{dx}{dt}
+]
+
+## Para qué sirve en economía
+
+Sirve para estudiar:
+
+* cambio del precio
+* cambio del capital
+* cambio del inventario
+* cambio de la deuda
+* cambio de la producción
+
+## Conceptos previos
+
+* potencia
+* producto por constante
+* interpretación de pendiente
+
+## Explicación paso a paso
+
+Si:
+[
+q(t)=5t^2+3t-1
+]
+entonces:
+
+[
+\frac{d}{dt}(5t^2)=10t
+]
+[
+\frac{d}{dt}(3t)=3
+]
+[
+\frac{d}{dt}(-1)=0
+]
+
+Por tanto:
+[
+q'(t)=10t+3
+]
+
+## Ejemplo resuelto 3
+
+### Planteamiento
+
+Deriva:
+[
+f(t)=3t^2-8t+1
+]
+
+### Desarrollo
+
+[
+\frac{d}{dt}(3t^2)=6t
+]
+[
+\frac{d}{dt}(-8t)=-8
+]
+[
+\frac{d}{dt}(1)=0
+]
+
+Entonces:
+[
+f'(t)=6t-8
+]
+
+### Resultado
+
+[
+f'(t)=6t-8
+]
+
+### Errores a evitar
+
+* bajar mal el exponente
+* dejar el exponente igual
+* derivar la constante como si cambiara
+* olvidar el signo negativo
+
+## Visualización interactiva
+
+* gráfica (2D) de (f(t))
+* gráfica (2D) de (f'(t))
+* cursor que muestre relación entre pendiente de (f(t)) y valor de (f'(t))
+
+## Mini repaso
+
+La derivada no es la variable. Es su velocidad de cambio.
+
+---
+
+# Bloque 4. Equilibrio y lectura dinámica
+
+## Qué significa en palabras simples
+
+Un equilibrio ocurre cuando la variable deja de cambiar.
+
+Si:
+[
+\frac{dx}{dt}=f(x)
+]
+entonces el equilibrio se obtiene resolviendo:
+[
+f(x)=0
+]
+
+## Para qué sirve en economía
+
+Sirve para detectar niveles hacia donde el sistema se detiene o alrededor de los cuales se mueve.
+
+## Conceptos previos
+
+* signo positivo
+* signo negativo
+* resolución básica de ecuaciones
+
+## Explicación paso a paso
+
+Si:
+[
+\frac{dx}{dt}=8-x
+]
+entonces el equilibrio sale de:
+[
+8-x=0
+]
+[
+x=8
+]
+
+Ahora se interpreta:
+
+* si (x<8), entonces (\frac{dx}{dt}>0), así que (x) sube
+* si (x>8), entonces (\frac{dx}{dt}<0), así que (x) baja
+
+Entonces (x=8) es un equilibrio estable.
+
+## Ejemplo resuelto 4
+
+### Planteamiento
+
+Encuentra el equilibrio de:
+[
+\frac{dx}{dt}=12-3x
+]
+
+### Desarrollo
+
+[
+12-3x=0
+]
+[
+3x=12
+]
+[
+x=4
+]
+
+Para revisar estabilidad:
+
+* si (x<4), (\frac{dx}{dt}>0)
+* si (x>4), (\frac{dx}{dt}<0)
+
+### Resultado
+
+[
+x^*=4
+]
+y es estable.
+
+### Errores a evitar
+
+* igualar (x) a cero en vez de igualar la derivada a cero
+* olvidar revisar signos a ambos lados del equilibrio
+* pensar que equilibrio significa «sin valor»
+* no distinguir entre valor de la variable y tasa de cambio
+
+## Visualización interactiva
+
+* gráfica de:
+  [
+  f(x)=12-3x
+  ]
+* línea de fase con flechas
+* animación desde distintos valores iniciales
+
+## Mini repaso
+
+Equilibrio no significa inmovilidad absoluta del modelo completo. Significa que esa variable ya no cambia en ese punto.
+
+---
+
+# Bloque 5. Ecuaciones diferenciales separables
+
+## Qué significa en palabras simples
+
+Son ecuaciones que se pueden ordenar para dejar de un lado todo lo de (y) y del otro todo lo de (t).
+
+## Para qué sirve en economía
+
+Aparecen en procesos de crecimiento, ajuste simple, acumulación y difusión.
+
+## Conceptos previos
+
+* derivada
+* fracciones
+* logaritmo
+* separación de términos
+
+## Explicación paso a paso
+
+Resolver:
+[
+\frac{dy}{dt}=2y
+]
+
+Paso 1:
+[
+\frac{1}{y},dy=2,dt
+]
+
+Paso 2:
+[
+\int \frac{1}{y},dy=\int 2,dt
+]
+
+Paso 3:
+[
+\ln|y|=2t+C
+]
+
+Paso 4:
+[
+y=Ce^{2t}
+]
+
+## Ejemplo resuelto 5
+
+### Planteamiento
+
+Resuelve:
+[
+\frac{dy}{dt}=3t
+]
+
+### Desarrollo
+
+[
+dy=3t,dt
+]
+
+Integramos:
+[
+\int dy=\int 3t,dt
+]
+[
+y=\frac{3}{2}t^2+C
+]
+
+### Resultado
+
+[
+y=\frac{3}{2}t^2+C
+]
+
+### Errores a evitar
+
+* separar mal variables
+* olvidar la constante (C)
+* integrar (3t) como si diera (3t)
+* pensar que toda ecuación con derivada es separable
+
+## Visualización interactiva
+
+* campo de pendientes
+* familia de soluciones para varios valores de (C)
+* selección de una curva particular
+
+## Mini repaso
+
+Separar variables es reordenar bien. Si se ordena mal, todo se cae.
+
+---
+
+# Bloque 6. Ecuación lineal de primer orden
+
+## Qué significa en palabras simples
+
+Es una ecuación donde aparecen la función y su derivada, ambas en primer grado.
+
+Forma general:
+[
+y'+P(t)y=Q(t)
+]
+
+## Para qué sirve en economía
+
+Sirve para modelar ajuste gradual hacia un nivel objetivo.
+
+## Conceptos previos
+
+* derivada
+* exponencial
+* multiplicación de toda la ecuación por una misma expresión
+
+## Explicación paso a paso
+
+Resolver:
+[
+y'+y=4
+]
+
+Factor integrante:
+[
+\mu(t)=e^{\int 1,dt}=e^t
+]
+
+Multiplicamos:
+[
+e^ty'+e^ty=4e^t
+]
+
+Eso se vuelve:
+[
+\frac{d}{dt}(e^ty)=4e^t
+]
+
+Integramos:
+[
+e^ty=4e^t+C
+]
+
+Despejamos:
+[
+y=4+Ce^{-t}
+]
+
+## Ejemplo resuelto 6
+
+### Planteamiento
+
+Resuelve:
+[
+y'+2y=6
+]
+
+### Desarrollo
+
+Factor integrante:
+[
+\mu(t)=e^{2t}
+]
+
+Multiplicamos:
+[
+e^{2t}y'+2e^{2t}y=6e^{2t}
+]
+
+Entonces:
+[
+\frac{d}{dt}(e^{2t}y)=6e^{2t}
+]
+
+Integramos:
+[
+e^{2t}y=3e^{2t}+C
+]
+
+Despejamos:
+[
+y=3+Ce^{-2t}
+]
+
+### Resultado
+
+[
+y=3+Ce^{-2t}
+]
+
+### Errores a evitar
+
+* calcular mal el factor integrante
+* olvidar multiplicar toda la ecuación
+* integrar mal (e^{2t})
+* perder el signo del exponente al despejar
+
+## Visualización interactiva
+
+* trayectoria de la solución
+* línea de equilibrio:
+  [
+  y=3
+  ]
+* campo de pendientes
+* comparación de soluciones con distintas condiciones iniciales
+
+## Mini repaso
+
+La parte:
+[
+Ce^{-2t}
+]
+se va apagando conforme pasa el tiempo. Por eso la solución se acerca al equilibrio.
+
+---
+
+# Bloque 7. Ecuación de Bernoulli
+
+## Qué significa en palabras simples
+
+Es una ecuación parecida a la lineal, pero aparece una potencia de (y).
+
+Forma:
+[
+y'+P(t)y=Q(t)y^n,\qquad n\neq 0,1
+]
+
+## Para qué sirve en economía
+
+Sirve para modelar procesos donde hay crecimiento y también un freno dependiente del nivel de la variable.
+
+## Conceptos previos
+
+* ecuación lineal
+* potencia
+* sustitución de variable
+
+## Explicación paso a paso
+
+Resolver:
+[
+y'+y=y^2
+]
+
+Aquí:
+[
+n=2
+]
+
+Se usa:
+[
+v=y^{1-n}=y^{-1}=\frac{1}{y}
+]
+
+Con esa sustitución, la ecuación se convierte en una lineal en (v):
+[
+v'-v=-1
+]
+
+Resolviendo:
+[
+v=1+Ce^t
+]
+
+Como:
+[
+v=\frac{1}{y}
+]
+entonces:
+[
+y=\frac{1}{1+Ce^t}
+]
+
+## Ejemplo resuelto 7
+
+### Planteamiento
+
+Resolver y explicar la forma de la solución:
+[
+y'+y=y^2
+]
+
+### Resultado
+
+[
+y=\frac{1}{1+Ce^t}
+]
+
+### Interpretación
+
+No es una solución lineal. Tiene una forma racional con exponencial y permite ver procesos con ajuste no lineal.
+
+### Errores a evitar
+
+* usar mal el exponente en el cambio de variable
+* olvidar que (v=\frac{1}{y})
+* confundir Bernoulli con lineal simple
+* despejar mal al final
+
+## Visualización interactiva
+
+* varias trayectorias para distintos (C)
+* comparación entre comportamiento lineal y no lineal
+* control para cambiar (C)
+
+## Mini repaso
+
+Bernoulli se resuelve convirtiéndola en una lineal. El truco está en la sustitución.
+
+---
+
+# Bloque 8. Estabilidad y diagrama de fase
+
+## Qué significa en palabras simples
+
+La estabilidad responde esta pregunta: si una trayectoria empieza cerca del equilibrio, ¿se acerca o se aleja?
+
+## Para qué sirve en economía
+
+Sirve para entender si un precio, inventario, capital o nivel de adopción tiende a estabilizarse o no.
+
+## Conceptos previos
+
+* equilibrio
+* signo
+* interpretación de flechas
+
+## Explicación paso a paso
+
+Si:
+[
+\frac{dx}{dt}=x(4-x)
+]
+
+Primero encontramos equilibrios:
+[
+x(4-x)=0
+]
+[
+x=0,\qquad x=4
+]
+
+Ahora revisamos signos:
+
+* si (x<0), entonces (\frac{dx}{dt}<0)
+* si (0<x<4), entonces (\frac{dx}{dt}>0)
+* si (x>4), entonces (\frac{dx}{dt}<0)
+
+Conclusión:
+
+* (x=0) es inestable
+* (x=4) es estable
+
+## Ejemplo resuelto 8
+
+### Planteamiento
+
+Analiza la estabilidad de:
+[
+\frac{dx}{dt}=x(5-x)
+]
+
+### Desarrollo
+
+Equilibrios:
+[
+x=0,\qquad x=5
+]
+
+Signos:
+
+* si (x<0), (\frac{dx}{dt}<0)
+* si (0<x<5), (\frac{dx}{dt}>0)
+* si (x>5), (\frac{dx}{dt}<0)
+
+### Resultado
+
+* (x=0) es inestable
+* (x=5) es estable
+
+### Errores a evitar
+
+* no revisar todos los intervalos
+* concluir estabilidad sin mirar flechas
+* creer que todos los equilibrios son estables
+* confundir signo de la derivada con signo de la variable
+
+## Visualización interactiva
+
+* gráfica de:
+  [
+  f(x)=x(5-x)
+  ]
+* línea de fase
+* trayectorias en el tiempo
+* versión (3D) opcional:
+  [
+  x(t;x_0)
+  ]
+  con eje de tiempo, eje de condición inicial y eje de valor de la variable
+
+## Mini repaso
+
+La estabilidad se ve mejor con flechas que con puro texto.
+
+---
+
+# Ejercicios del Día 1
+
+## Orden obligatorio para la aplicación
+
+Primero van los ejercicios matemáticos. Después los económicos.
+
+---
+
+## Ejercicio 1. Matemático
+
+### Planteamiento
+
+Simplifica:
+[
+\frac{x^2-25}{x-5}
+]
+
+### Qué pide
+
+Obtener la expresión simplificada y señalar la restricción.
+
+### Desarrollo
+
+[
+x^2-25=(x-5)(x+5)
+]
+
+Entonces:
+[
+\frac{(x-5)(x+5)}{x-5}=x+5,\qquad x\neq 5
+]
+
+### Resultado
+
+[
+x+5,\qquad x\neq 5
+]
+
+### Interpretación
+
+La simplificación es correcta, pero no puede olvidarse la restricción original.
+
+### Errores a evitar
+
+* cancelar sin factorizar
+* olvidar la restricción
+* confundir diferencia de cuadrados con trinomio
+
+### Visualización
+
+Comparar la función original y la simplificada con hueco en (x=5).
+
+---
+
+## Ejercicio 2. Matemático
+
+### Planteamiento
+
+Deriva:
+[
+f(t)=4t^3-2t+7
+]
+
+### Qué pide
+
+Calcular:
+[
+f'(t)
+]
+
+### Desarrollo
+
+[
+\frac{d}{dt}(4t^3)=12t^2
+]
+[
+\frac{d}{dt}(-2t)=-2
+]
+[
+\frac{d}{dt}(7)=0
+]
+
+### Resultado
+
+[
+f'(t)=12t^2-2
+]
+
+### Interpretación
+
+La velocidad de cambio depende del tiempo y no es constante.
+
+### Errores a evitar
+
+* derivar (7) como si cambiara
+* bajar mal el exponente
+* perder el signo negativo
+
+### Visualización
+
+Gráfica de (f(t)) y de (f'(t)) con cursor sincronizado.
+
+---
+
+## Ejercicio 3. Matemático
+
+### Planteamiento
+
+Resuelve:
+[
+\frac{dy}{dt}=5y,\qquad y(0)=3
+]
+
+### Qué pide
+
+Encontrar la trayectoria particular.
+
+### Desarrollo
+
+[
+\frac{1}{y},dy=5,dt
+]
+[
+\int \frac{1}{y},dy=\int 5,dt
+]
+[
+\ln|y|=5t+C
+]
+[
+y=Ce^{5t}
+]
+
+Usando (y(0)=3):
+[
+3=C
+]
+
+### Resultado
+
+[
+y=3e^{5t}
+]
+
+### Interpretación
+
+La variable crece exponencialmente desde (3).
+
+### Errores a evitar
+
+* olvidar usar la condición inicial
+* perder la constante
+* despejar mal después del logaritmo
+
+### Visualización
+
+Campo de pendientes y trayectoria destacada.
+
+---
+
+## Ejercicio 4. Matemático
+
+### Planteamiento
+
+Resuelve:
+[
+y'+3y=9
+]
+
+### Qué pide
+
+Obtener la solución general.
+
+### Desarrollo
+
+Factor integrante:
+[
+\mu(t)=e^{3t}
+]
+
+Multiplicando:
+[
+\frac{d}{dt}(e^{3t}y)=9e^{3t}
+]
+
+Integrando:
+[
+e^{3t}y=3e^{3t}+C
+]
+
+Despejando:
+[
+y=3+Ce^{-3t}
+]
+
+### Resultado
+
+[
+y=3+Ce^{-3t}
+]
+
+### Interpretación
+
+La variable converge al equilibrio (3).
+
+### Errores a evitar
+
+* calcular mal el factor integrante
+* no integrar bien el lado derecho
+* perder el exponente negativo
+
+### Visualización
+
+Soluciones múltiples y línea horizontal en (y=3).
+
+---
+
+## Ejercicio 5. Económico
+
+### Planteamiento
+
+El precio (p(t)) se ajusta a un precio meta de (12):
+[
+\frac{dp}{dt}=12-p,\qquad p(0)=5
+]
+
+### Qué pide
+
+Encontrar la trayectoria del precio.
+
+### Desarrollo
+
+[
+p'+p=12
+]
+
+Factor integrante:
+[
+e^t
+]
+
+Resolviendo:
+[
+p=12+Ce^{-t}
+]
+
+Usando (p(0)=5):
+[
+5=12+C
+]
+[
+C=-7
+]
+
+### Resultado
+
+[
+p(t)=12-7e^{-t}
+]
+
+### Interpretación
+
+El precio inicia en (5) y se acerca gradualmente a (12).
+
+### Errores a evitar
+
+* cambiar el signo de (C)
+* olvidar la condición inicial
+* decir que llega exactamente a (12) en tiempo finito
+
+### Visualización
+
+Trayectoria, línea de equilibrio, campo de pendientes y animación del ajuste.
+
+---
+
+## Ejercicio 6. Económico
+
+### Planteamiento
+
+El inventario (I(t)) evoluciona así:
+[
+\frac{dI}{dt}=18-0.6I,\qquad I(0)=20
+]
+
+### Qué pide
+
+Encontrar la trayectoria y el equilibrio.
+
+### Desarrollo
+
+Equilibrio:
+[
+18-0.6I=0
+]
+[
+I=30
+]
+
+Solución general:
+[
+I=30+Ce^{-0.6t}
+]
+
+Usando (I(0)=20):
+[
+20=30+C
+]
+[
+C=-10
+]
+
+### Resultado
+
+[
+I(t)=30-10e^{-0.6t}
+]
+
+### Interpretación
+
+El inventario sube desde (20) hasta acercarse a (30).
+
+### Errores a evitar
+
+* sacar mal el equilibrio
+* olvidar el signo de (C)
+* no distinguir entre nivel inicial y nivel de largo plazo
+
+### Visualización
+
+Gráfica temporal con equilibrio fijo y deslizador para (I(0)).
+
+---
+
+## Ejercicio 7. Económico
+
+### Planteamiento
+
+El capital (K(t)) sigue:
+[
+\frac{dK}{dt}=10-0.5K,\qquad K(0)=30
+]
+
+### Qué pide
+
+Encontrar la trayectoria del capital.
+
+### Desarrollo
+
+Equilibrio:
+[
+10-0.5K=0
+]
+[
+K=20
+]
+
+Solución general:
+[
+K=20+Ce^{-0.5t}
+]
+
+Usando (K(0)=30):
+[
+30=20+C
+]
+[
+C=10
+]
+
+### Resultado
+
+[
+K(t)=20+10e^{-0.5t}
+]
+
+### Interpretación
+
+El capital arranca arriba del equilibrio y va bajando hacia (20).
+
+### Errores a evitar
+
+* pensar que por iniciar alto el equilibrio cambia
+* olvidar que el equilibrio es fijo para ese modelo
+* interpretar mal el signo de la tasa de cambio
+
+### Visualización
+
+Trayectoria descendente y comparación con otros valores iniciales.
+
+---
+
+## Ejercicio 8. Económico
+
+### Planteamiento
+
+Un proceso de adopción tecnológica se modela como:
+[
+\frac{dx}{dt}=x(6-x)
+]
+
+### Qué pide
+
+Encontrar equilibrios y estabilidad.
+
+### Desarrollo
+
+[
+x(6-x)=0
+]
+[
+x=0,\qquad x=6
+]
+
+Signos:
+
+* si (x<0), (\frac{dx}{dt}<0)
+* si (0<x<6), (\frac{dx}{dt}>0)
+* si (x>6), (\frac{dx}{dt}<0)
+
+### Resultado
+
+* (x=0) es inestable
+* (x=6) es estable
+
+### Interpretación
+
+Si el proceso despega y toma valores positivos, tiende a estabilizarse alrededor de (6).
+
+### Errores a evitar
+
+* no revisar signos por intervalos
+* concluir estabilidad sin línea de fase
+* pensar que (x=0) siempre es estable por ser cero
+
+### Visualización
+
+* gráfica de (f(x))
+* línea de fase
+* trayectorias temporales
+* superficie (3D) opcional:
+  [
+  x(t;x_0)
+  ]
+
+---
+
+# Cierre del Día 1
+
+## Mensaje final didáctico
+
+Este primer día debe dejarle a la alumna una idea muy clara:
+
+[
+\text{un sistema dinámico estudia cómo cambian las variables en el tiempo}
+]
+
+y ese cambio se expresa con objetos como:
+[
+\frac{dx}{dt}
+]
+
+Si domina:
+
+* lectura de funciones
+* despeje
+* factorización
+* derivada
+* equilibrio
+* separación de variables
+* lineal de primer orden
+* estabilidad básica
+
+entonces ya puede entrar al segundo día con base suficiente.
+
+---
+
+# Requisito final de la aplicación
+
+Al pie de la aplicación debe aparecer exactamente este texto:
+
+**Material creado por el Prof. Morales Mendoza Raul**
+
+---
