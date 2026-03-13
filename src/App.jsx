@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import MathMarkdown from './components/MathMarkdown';
 import VisualizationPanel from './components/Visualizers';
-import { closingSection, courseMeta, exerciseGroups, introSection, sections } from './content/day1Content';
+import { courseMeta, exerciseGroups, introSection, sections } from './content/day1Content';
 
 function getInitialTheme() {
   if (typeof window === 'undefined') {
@@ -244,7 +244,7 @@ function ExampleCard({ example, onOpenVisual }) {
         </div>
         <div>
           <p className="prompt-label">Qué se busca</p>
-          <p>{example.ask}</p>
+          <MathMarkdown content={example.ask} className="rich-text rich-text--compact" />
         </div>
       </div>
       {showSolution ? <StepNavigator steps={example.steps} /> : null}
@@ -263,13 +263,16 @@ function ExampleCard({ example, onOpenVisual }) {
           <p className="error-box__title">Errores a evitar</p>
           <ul className="plain-list">
             {example.errors.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item}>
+                <MathMarkdown content={item} className="rich-text rich-text--compact" />
+              </li>
             ))}
           </ul>
         </div>
       ) : null}
       <div className="mini-note mini-note--soft">
-        <strong>Visualización sugerida.</strong> {example.visualPrompt}
+        <strong>Visualización sugerida.</strong>{' '}
+        <MathMarkdown content={example.visualPrompt} className="rich-text rich-text--compact" />
       </div>
     </article>
   );
@@ -356,7 +359,7 @@ function ExerciseCard({ exercise, theme }) {
         </div>
         <div>
           <p className="prompt-label">Qué se pide</p>
-          <p>{exercise.ask}</p>
+          <MathMarkdown content={exercise.ask} className="rich-text rich-text--compact" />
         </div>
       </div>
       {showSolution ? <StepNavigator steps={exercise.steps} /> : null}
@@ -375,13 +378,16 @@ function ExerciseCard({ exercise, theme }) {
           <p className="error-box__title">Errores a evitar</p>
           <ul className="plain-list">
             {exercise.errors.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item}>
+                <MathMarkdown content={item} className="rich-text rich-text--compact" />
+              </li>
             ))}
           </ul>
         </div>
       ) : null}
       <div className="mini-note mini-note--soft">
-        <strong>Visualización sugerida.</strong> {exercise.visualHint}
+        <strong>Visualización sugerida.</strong>{' '}
+        <MathMarkdown content={exercise.visualHint} className="rich-text rich-text--compact" />
       </div>
       {showVisual ? <VisualizationPanel visual={exercise.visual} theme={theme} /> : null}
     </article>
@@ -409,37 +415,9 @@ function ExerciseSection({ group, theme }) {
   );
 }
 
-function ClosingSection() {
-  return (
-    <section id={closingSection.id} className="page-section closing-section">
-      <div className="section-head">
-        <div>
-          <p className="eyebrow">{closingSection.badge}</p>
-          <h2>{closingSection.title}</h2>
-        </div>
-      </div>
-      <div className="info-grid">
-        <article className="surface-card">
-          <MathMarkdown content={closingSection.message} className="rich-text" />
-        </article>
-        <article className="surface-card">
-          <h3>Lista de salida del Día 1</h3>
-          <ul className="plain-list">
-            {closingSection.readiness.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <MathMarkdown content={closingSection.conclusion} className="rich-text" />
-        </article>
-      </div>
-      <footer className="footer-note">{courseMeta.footerText}</footer>
-    </section>
-  );
-}
-
 export default function App() {
   const navItems = useMemo(
-    () => [introSection, ...sections, ...exerciseGroups, closingSection].map(({ id, navLabel, badge, title }) => ({ id, navLabel, badge, title })),
+    () => [introSection, ...sections, ...exerciseGroups].map(({ id, navLabel, badge, title }) => ({ id, navLabel, badge, title })),
     [],
   );
   const [activeId] = useActiveSection(navItems);
@@ -491,7 +469,7 @@ export default function App() {
             />
           );
         })}
-        <ClosingSection />
+        <footer className="footer-note">{courseMeta.footerText}</footer>
       </main>
     </div>
   );

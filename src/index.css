@@ -1186,6 +1186,17 @@ body[data-theme='dark'] .theme-toggle__icon {
   margin: 0 0 0.95rem;
 }
 
+.rich-text--compact p,
+.rich-text--compact ul,
+.rich-text--compact ol {
+  margin: 0;
+}
+
+.mini-note .rich-text--compact,
+.mini-note .rich-text--compact p {
+  display: inline;
+}
+
 .rich-text ul,
 .rich-text ol {
   margin: 0 0 1rem 1.1rem;

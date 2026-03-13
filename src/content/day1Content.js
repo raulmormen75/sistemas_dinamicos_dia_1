@@ -13,7 +13,7 @@ export const introSection = {
   badge: 'Inicio',
   title: 'Presentación del Día 1',
   usageIntro: md`
-Usa la barra de puntos del lado izquierdo para ir directo a cada bloque, a los ejercicios y al cierre. Dentro de cada tema puedes alternar entre explicación, ejemplo y visualización según lo que necesites estudiar en ese momento.
+Usa la barra de puntos del lado izquierdo para ir directo a cada bloque y a los ejercicios. Dentro de cada tema puedes alternar entre explicación, ejemplo y visualización según lo que necesites estudiar en ese momento.
 `,
   guideItems: [
     {
@@ -1251,32 +1251,3 @@ Las trayectorias positivas convergen a $6$, mientras que el equilibrio en $0$ re
     ],
   },
 ];
-
-export const closingSection = {
-  id: 'cierre',
-  navLabel: 'Cierre',
-  badge: 'Cierre',
-  title: 'Cierre del Día 1',
-  message: md`
-Este primer día debe dejarle a la alumna una idea muy clara: un sistema dinámico estudia cómo cambian las variables en el tiempo.
-
-y ese cambio se expresa con objetos como:
-
-$$
-\\frac{dx}{dt}
-$$
-`,
-  readiness: [
-    'lectura de funciones',
-    'despeje',
-    'factorización',
-    'derivada',
-    'equilibrio',
-    'separación de variables',
-    'lineal de primer orden',
-    'estabilidad básica',
-  ],
-  conclusion: md`
-Si domina estos elementos, entonces ya puede entrar al segundo día con base suficiente.
-`,
-};
