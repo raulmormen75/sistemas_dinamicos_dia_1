@@ -1166,7 +1166,9 @@ body[data-theme='dark'] .plot-card {
 }
 
 body[data-theme='dark'] .mobile-nav {
-  background: linear-gradient(135deg, rgba(11, 17, 23, 0.94), rgba(16, 23, 31, 0.86));
+  background: rgba(11, 17, 23, 0.98);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.34);
 }
 
 body[data-theme='dark'] .block-rail {
@@ -1459,20 +1461,20 @@ body[data-theme='dark'] .theme-toggle__icon {
   }
 
   .mobile-nav {
-    position: relative;
-    z-index: 55;
+    position: sticky;
+    top: 0;
+    z-index: 60;
     display: flex;
     gap: 0.7rem;
     overflow: auto;
-    padding: 0.35rem 0.5rem 0.8rem;
-    margin-top: 4.5rem;
-    margin-inline: 0.5rem;
-    margin-bottom: 0.55rem;
-    border: 1px solid var(--border-soft);
-    border-radius: 999px;
-    background: linear-gradient(135deg, rgba(248, 245, 239, 0.92), rgba(255, 255, 255, 0.78));
-    backdrop-filter: blur(14px);
-    box-shadow: var(--shadow-soft);
+    padding: calc(env(safe-area-inset-top, 0px) + 3.8rem) 1rem 0.8rem;
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid var(--border-strong);
+    border-radius: 0;
+    background: rgba(248, 245, 239, 0.98);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 16px rgba(28, 42, 58, 0.05);
     scrollbar-width: none;
   }
 
