@@ -1456,6 +1456,10 @@ body[data-theme='dark'] .theme-toggle__icon {
     grid-template-columns: 1fr;
   }
 
+  .page-section {
+    scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 8.5rem);
+  }
+
   .sidebar {
     display: none;
   }
