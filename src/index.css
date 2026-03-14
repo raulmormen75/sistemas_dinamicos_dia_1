@@ -1457,7 +1457,7 @@ body[data-theme='dark'] .theme-toggle__icon {
   }
 
   .page-section {
-    scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 8.5rem);
+    scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 7.6rem);
   }
 
   .sidebar {

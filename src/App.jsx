@@ -30,17 +30,38 @@ function useActiveSection(navItems) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((left, right) => right.intersectionRatio - left.intersectionRatio);
-
-        if (visibleEntries[0]?.target?.id) {
-          setActiveId(visibleEntries[0].target.id);
+        // Find all intersecting entries
+        const intersecting = entries.filter((entry) => entry.isIntersecting);
+        if (intersecting.length > 0) {
+          // Sort by the top bound relative to the viewport.
+          // The element closest to the top of the screen (or covering it by being negative)
+          // is typically the active section. If an element's top is highly negative, it's covering
+          // the upper part. We sort by checking which element spans across the middle of the reading zone.
+          intersecting.sort((a, b) => {
+            // we want the element that is largest occupying the current viewport, or whose top is closest to the top.
+            // A more robust metric for long articles: the one whose top is closest to 0, if there are multiple.
+            // Or simply sort by the order they appear in the DOM (assuming entries are sorted by DOM but let's be safe).
+            // Actually, we can check their bounding rects. The one whose `y` is highest on screen (but <= some threshold) is active.
+            return a.boundingClientRect.top - b.boundingClientRect.top;
+          });
+          
+          // The active element is the deepest one that has scrolled past the detection zone, 
+          // or the first one if none have.
+          let active = intersecting[0];
+          for (const entry of intersecting) {
+            // if the top of the section is somewhat above the middle of the viewport
+            if (entry.boundingClientRect.top < window.innerHeight * 0.4) {
+              active = entry;
+            }
+          }
+          if (active?.target?.id) {
+            setActiveId(active.target.id);
+          }
         }
       },
       {
-        threshold: [0.15, 0.35, 0.55, 0.75],
-        rootMargin: '-15% 0px -55% 0px',
+        // Use a wide margin so we can detect elements that are covering the viewing area
+        rootMargin: '-20% 0px -40% 0px',
       },
     );
 
